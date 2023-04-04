@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import classes from "./NewTodo.module.css";
 
 // 모든 TS에서 ? 는 값이 확실치는 않지만 일단 접근해서 값을 가져와바라 하는 뜻
 // null이 오는 경우에는 상수나 null을 집어넣음
@@ -25,7 +26,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <label htmlFor="text">Todo text</label>
       <input type="text" id="text" ref={todoTextInputRef} />
       <button>Add Todo</button>
