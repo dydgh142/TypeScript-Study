@@ -1,11 +1,13 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import classes from "./NewTodo.module.css";
+import { TodosContext } from "../store/todos-context";
 
 // 모든 TS에서 ? 는 값이 확실치는 않지만 일단 접근해서 값을 가져와바라 하는 뜻
 // null이 오는 경우에는 상수나 null을 집어넣음
 // !는 null이 아님을 확실히 아니까 무조건 접근해서 언제나 실제 값을 가져올 수 있도록 할때 사용
 
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (event: React.FormEvent) => {
@@ -22,7 +24,8 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
       //trhow an error
       return;
     }
-    props.onAddTodo(enteredText);
+
+    todosCtx.addTodo(enteredText);
   };
 
   return (
